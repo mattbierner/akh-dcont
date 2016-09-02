@@ -1,7 +1,7 @@
 Delimted continuation monad for [Akh Javascript monad transformer collection](https://github.com/mattbierner/akh)
 
 ## API
-The [delimited continuation][dcont] transformer, `akh::trans::dcont`, layers delimited control over a monad. The base type, `aka::dcont`, provides delimited control on its own.
+The [delimited continuation][dcont] transformer, `DContT`, layers delimited control over a monad. The base type, `DCont`, provides delimited control on its own.
 The delimited continuation transformer is a monad, functor, and applicative functor.
 
 ```js

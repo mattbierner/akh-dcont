@@ -1,7 +1,7 @@
 {
   "name": "akh.dcont",
   "version": "0.0.0",
-  "description": "Akh delimited continuation monad",
+  "description": "Akh delimited continuation monad transformer and monad",
   "author": "Matt Bierner",
   "license": "MIT",
   "keywords": [
