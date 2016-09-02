@@ -1,0 +1,39 @@
+{
+  "name": "akh.dcont",
+  "version": "0.0.0",
+  "description": "Akh delimited continuation monad",
+  "author": "Matt Bierner",
+  "license": "MIT",
+  "keywords": [
+    "monad transformer",
+    "monad",
+    "akh",
+    "delimited continuation",
+    "delimited",
+    "continuation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattbierner/akh-dcont.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mattbierner/akh-dcont/issues"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "akh.core.spec": "0.x",
+    "akh.core.trampoline": "^0.0.0",
+    "akh.identity": "^0.1.0",
+    "akh.unique": "^0.0.0",
+    "nu-stream": "^3.3.1"
+  },
+  "devDependencies": {
+    "akh.state": "0.0.0",
+    "chai": "*",
+    "mocha": "*",
+    "state": "^0.2.0"
+  },
+  "scripts": {
+    "test": "mocha ./tests"
+  }
+}
