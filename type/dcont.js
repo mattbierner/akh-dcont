@@ -16,5 +16,8 @@ const DCont = DContT(Identity);
 DCont.run = (m, k) =>
     Identity.run(DContT.run(m, k))
 
-module.exports = DCont
+DCont.prototype.run = function(k) {
+    return DCont.run(this, k)
+}
 
+module.exports = DCont

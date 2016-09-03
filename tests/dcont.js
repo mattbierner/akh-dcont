@@ -1,4 +1,4 @@
-"use strict"
+'use strict'
 const assert = require('chai').assert
 const DCont = require('../index').DCont
 const base = require('akh.core')
@@ -6,19 +6,20 @@ const base = require('akh.core')
 const sqr = x => x * x
 
 describe('DCont', () => {
-    it("simple_of", () => {
+    it('simple_of', () => {
         const c = DCont.of(3)
 
         assert.strictEqual(9, DCont.run(c, sqr))
+        assert.strictEqual(9, c.run(sqr))
     })
 
-    it("simple_bind", () => {
+    it('simple_bind', () => {
         const c = DCont.of(3).chain(x => DCont.of(x + 5))
 
         assert.strictEqual(64, DCont.run(c, sqr))
     })
 
-    it("chain", () => {
+    it('chain', () => {
         const c = DCont.of(3)
             .chain(function (x) {
                 return DCont.of(x + 5)
@@ -32,7 +33,7 @@ describe('DCont', () => {
             16)
     })
 
-    it("many_chain", () => {
+    it('many_chain', () => {
         let c = DCont.of(0)
 
         for (let i = 0; i < 50000; ++i) {
@@ -52,7 +53,7 @@ describe('DCont', () => {
             50000 * 50000)
     })
 
-    it("many_inner_chain", () => {
+    it('many_inner_chain', () => {
         const f = function (x) {
             if (x > 50000) return DCont.of(x)
             return DCont.of(x + 1).chain(f)
@@ -64,7 +65,7 @@ describe('DCont', () => {
     })
 
 
-    it("single_shift_reset", () => {
+    it('single_shift_reset', () => {
         const c = DCont
             .reset(function (p) {
                 return DCont
@@ -84,7 +85,7 @@ describe('DCont', () => {
             14 * 14)
     })
 
-    it("multi_shift_abort", () => {
+    it('multi_shift_abort', () => {
         const c = DCont
             .reset(function (p) {
                 return DCont
@@ -108,7 +109,7 @@ describe('DCont', () => {
             10 * 10)
     })
 
-    it("multi_shift_in_reset", () => {
+    it('multi_shift_in_reset', () => {
         const add = function (x, y) { return x + y }
         const enumeration = base.liftM2.bind(null, function (x, y) { return [x, y] })
 
@@ -127,9 +128,7 @@ describe('DCont', () => {
             [[11, 21], [12, 22]])
     })
 
-
-
-    it("fmap", () => {
+    it('fmap', () => {
         const c = DCont.of(3)
             .map(function (x) { return x * x })
             .chain(function (x) {
@@ -140,5 +139,4 @@ describe('DCont', () => {
             DCont.run(c, sqr),
             10 * 10)
     })
-
 })

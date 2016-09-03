@@ -13,7 +13,6 @@ const spec = require('akh.core.spec')
 const DContMonad = require('../spec/dcont')
 const tramp = require('akh.core.trampoline')
 
-
 /* Segments
  ******************************************************************************/
 /**
@@ -148,10 +147,13 @@ const DContT = m => {
             new Instance(k =>
                 unDContT(c, pushSeq(subk, k)))
     })
+
+    Instance.prototype.run = function(k) {
+        return DContT.run(this, k)
+    }
     
     return Instance
 }
-
 
 /**
  * Perform a continuation computation and complete with `k`.

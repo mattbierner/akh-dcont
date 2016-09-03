@@ -1,38 +1,50 @@
-Delimted continuation monad for [Akh Javascript monad transformer collection](https://github.com/mattbierner/akh)
+# Delimted continuation monad and monad transformer for [Akh Javascript monad transformer library](https://github.com/mattbierner/akh)
 
-## API
 The [delimited continuation][dcont] transformer, `DContT`, layers delimited control over a monad. The base type, `DCont`, provides delimited control on its own.
 The delimited continuation transformer is a monad, functor, and applicative functor.
+
+```bash
+# To use as standalone package
+$ npm install --save akh.dcont
+
+# To use as part of akh library
+$ npm install --save akh
+```
+
+## Usage
+The dcont monad/transformer implements the [Fantasy Land][fl] monad, function, and applicative functor interfaces.
+
+<a href="https://github.com/fantasyland/fantasy-land">
+    <img src="https://raw.github.com/fantasyland/fantasy-land/master/logo.png" align="right" width="82px" height="82px" alt="Fantasy Land logo" />
+</a>
 
 ```js
 // Delimited continuation monad
 require('akh.dcont').DCont
 require('akh').DCont
-require('akh').type.dcont
 
 // Delimited continuation monad transformer
 require('akh.dcont').DContT
 require('akh').DContT
-require('akh').trans.dcont
 ```
 
-#### `DCont.run(m, k)`
+#### `DCont.run(m, k)`, `m.run(k)`
 Perform a delimited continuation computation `m` and complete with outer continuation `k`.
 
 ```js
-const liftM2 = require('akh').base.liftM2;
-const dcont = require('akh').dcont;
+const liftM2 = require('akh').base.liftM2
+const dcont = require('akh').dcont
 
-var list = liftM2.bind(null, (x, y) -> [x, y]);
+var list = liftM2.bind(null, (x, y) -> [x, y])
 
 const c = dcont.reset((p) =>
     liftM2((x, y) => x + y,
         dcont.shift(p, k =>
             list(k(of(1)), k(of(2))),
         dcont.shift(p, k =>
-            list(k(of(10)), k(of(20))));
+            list(k(of(10)), k(of(20))))
 
-dcont.run(c, console.log); // logs: [[11, 21], [12, 22]]
+dcont.run(c, console.log) // logs: [[11, 21], [12, 22]]
 ```
 
 #### `DContT.run(m, k)`
@@ -59,5 +71,18 @@ Delimit a continuation, calling `f` with delimiting prompt. `f` maps the prompt 
 
 #### `M.shift(p, f)`
 Capture the continuation delimited by `p`, reify the continuation, and pass it to `f`. `f` can invoke the reified continuation with a computation to evaluate the rest of the delimited continuation, or return a computation directly to break out.
+
+
+## Contributing
+Contributions are welcome.
+
+To get started:
+
+```bash
+$ cd akh-dcont
+$ npm install # install dev packages
+$ npm test # run tests
+```
+
 
 [dcont]: http://en.wikipedia.org/wiki/Delimited_continuation
