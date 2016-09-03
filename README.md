@@ -12,7 +12,7 @@ $ npm install --save akh
 ```
 
 ## Usage
-The dcont monad/transformer implements the [Fantasy Land][fl] monad, function, and applicative functor interfaces.
+`DContT` and `DCont` implements the [Fantasy Land][fl] monad, function, and applicative functor interfaces.
 
 <a href="https://github.com/fantasyland/fantasy-land">
     <img src="https://raw.github.com/fantasyland/fantasy-land/master/logo.png" align="right" width="82px" height="82px" alt="Fantasy Land logo" />
@@ -32,8 +32,8 @@ require('akh').DContT
 Perform a delimited continuation computation `m` and complete with outer continuation `k`.
 
 ```js
-const liftM2 = require('akh').base.liftM2
-const dcont = require('akh').dcont
+const liftM2 = require('akh').liftM2
+const dcont = require('akh').DCont
 
 var list = liftM2.bind(null, (x, y) -> [x, y])
 
