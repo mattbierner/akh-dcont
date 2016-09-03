@@ -86,3 +86,4 @@ $ npm test # run tests
 
 
 [dcont]: http://en.wikipedia.org/wiki/Delimited_continuation
+[fl]: https://github.com/fantasyland/fantasy-land
